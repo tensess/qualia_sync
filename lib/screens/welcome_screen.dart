@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import '../widgets/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<SocialButtons> buttons = [
-      SocialButtons('Sign in', () {}),
-      SocialButtons('Sign up', () {}),
+    final List<CustomButton> socialButtons = [
+      CustomButton(
+        text: 'Sign in',
+        onPressed: () {
+          debugPrint('Sign in clicked');
+        },
+      ),
+      CustomButton(
+        text: 'Sign up',
+        onPressed: () {
+          debugPrint('Sign up clicked');
+        },
+      ),
     ];
 
     return MaterialApp(
@@ -29,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 100,
                   ),
-                  ...buttons.map((element) => Padding(
+                  ...socialButtons.map((element) => Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: ElevatedButton(
                         onPressed: element.onPressed,
@@ -43,11 +54,4 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class SocialButtons {
-  final String text;
-  final VoidCallback onPressed;
-
-  SocialButtons(this.text, this.onPressed);
 }
