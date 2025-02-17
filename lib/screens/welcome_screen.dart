@@ -28,37 +28,35 @@ class WelcomeScreen extends StatelessWidget {
       ),
     ];
 
-    return MaterialApp(
-      home: Scaffold(
-        body: Stack(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    'Qualia Sync',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
-                    ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Qualia Sync',
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
                   ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  ...socialButtons.map((element) => Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: ElevatedButton(
-                        onPressed: element.onPressed,
-                        style: MyButtonTheme.buttonStyle,
-                        child: Text(element.text),
-                      )))
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                ...socialButtons.map((element) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ElevatedButton(
+                      onPressed: element.onPressed,
+                      style: MyButtonTheme.buttonStyle,
+                      child: Text(element.text),
+                    )))
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
