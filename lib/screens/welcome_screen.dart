@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qualia_sync/themes/my_button_theme.dart';
 import '../widgets/custom_button.dart';
+import 'sign_up_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -17,7 +18,12 @@ class WelcomeScreen extends StatelessWidget {
       CustomButton(
         text: 'Sign up',
         onPressed: () {
-          debugPrint('Sign up clicked');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SignUpScreen(),
+            ),
+          );
         },
       ),
     ];
