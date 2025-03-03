@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qualia_sync/themes/my_button_theme.dart';
 import '../widgets/custom_button.dart';
 import 'sign_up_screen.dart';
 
@@ -50,7 +49,6 @@ class WelcomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ElevatedButton(
                       onPressed: element.onPressed,
-                      style: MyButtonTheme.buttonStyle,
                       child: Text(element.text),
                     )))
               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:qualia_sync/themes/my_button_theme.dart';
 import 'firebase_options.dart';
 import 'screens/welcome_screen.dart';
 
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Qualia Sync',
       theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: MyButtonTheme.buttonStyle,
+        ),
         primarySwatch: Colors.blue,
       ),
       home: const WelcomeScreen(),
