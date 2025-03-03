@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -22,6 +23,14 @@ class SignUpScreenState extends State<SignUpScreen> {
           email: _emailController.text,
           password: _passwordController.text,
         );
+
+        String uid = userCredential.user!.uid;
+
+        await FirebaseFirestore.instance.collection('users').doc(uid).set({
+          'nickname': _nicknameController.text,
+        });
+
+        debugPrint("User registered and nickname saved to Firestore");
 
         debugPrint("User registered: ${userCredential.user?.email}");
       } on FirebaseAuthException catch (e) {
