@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -13,11 +14,34 @@ class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _register() {
+  void _register() async {
     if (_formKey.currentState!.validate()) {
-      debugPrint("Nickname: \${_nicknameController.text}");
-      debugPrint("Email: \${_emailController.text}");
-      debugPrint("Password: \${_passwordController.text}");
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+
+        debugPrint("User registered: ${userCredential.user?.email}");
+      } on FirebaseAuthException catch (e) {
+        debugPrint("❌ Error code: ${e.code}");
+        debugPrint("❌ Error message: ${e.message}");
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Registration failed: ${e.message}")),
+          );
+        }
+      } catch (e) {
+        debugPrint("❌ Unknown error: $e");
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Something went wrong: $e")),
+          );
+        }
+      }
     }
   }
 
